@@ -58,14 +58,12 @@ const ForgotPassword: React.FC = () => {
           return;
         }
 
-        if (error.response.status === 401) {
-          addToast({
-            type: 'error',
-            title: 'Erro na recuperação de senha',
-            description:
-              'Ocorreu um erro ao tentar realizar a recuperação de senha, tente novamente',
-          });
-        }
+        addToast({
+          type: 'error',
+          title: 'Erro na recuperação de senha',
+          description:
+            'Ocorreu um erro ao tentar realizar a recuperação de senha, tente novamente',
+        });
       } finally {
         setLoading(false);
       }
