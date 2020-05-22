@@ -41,11 +41,12 @@ const SignUp: React.FC = () => {
             .email('Digite um e-mail válido'),
           password: Yup.string().min(6, 'no mínimo 6 digitos'),
         });
+
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        await api.post('/users', data);
+        await api.post('users', data);
 
         history.push('/');
 
@@ -60,13 +61,14 @@ const SignUp: React.FC = () => {
           formRef.current?.setErrors(errors);
           return;
         }
-
-        addToast({
-          type: 'error',
-          title: 'Erro no cadastro',
-          description:
-            'Ocorreu um erro ao fazer o cadastro, tente novamente mais tarde',
-        });
+        if (error.response.status === 400) {
+          addToast({
+            type: 'error',
+            title: 'Erro no cadastro',
+            description:
+              'Já existe este e-mail em nossa base de dados, tente outro e-mail',
+          });
+        }
       }
     },
     [addToast, history],
