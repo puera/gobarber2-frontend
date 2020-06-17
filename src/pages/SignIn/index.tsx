@@ -55,14 +55,11 @@ const SignIn: React.FC = () => {
           return;
         }
 
-        if (error.response.status === 401) {
-          addToast({
-            type: 'error',
-            title: 'Erro na autenticação',
-            description:
-              'Ocorreu um erro ao fazer login, cheque as credenciais',
-          });
-        }
+        addToast({
+          type: 'error',
+          title: 'Erro na autenticação',
+          description: 'Ocorreu um erro ao fazer login, cheque as credenciais',
+        });
       }
     },
     [signIn, addToast, history],
