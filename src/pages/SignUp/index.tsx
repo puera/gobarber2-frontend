@@ -61,14 +61,12 @@ const SignUp: React.FC = () => {
           formRef.current?.setErrors(errors);
           return;
         }
-        if (error.response.status === 400) {
-          addToast({
-            type: 'error',
-            title: 'Erro no cadastro',
-            description:
-              'Já existe este e-mail em nossa base de dados, tente outro e-mail',
-          });
-        }
+        addToast({
+          type: 'error',
+          title: 'Erro no cadastro',
+          description:
+            'Já existe este e-mail em nossa base de dados, tente outro e-mail',
+        });
       }
     },
     [addToast, history],
